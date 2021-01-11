@@ -1,0 +1,17 @@
+.quiz-response-list li {
+    list-style-type:upper-alpha;
+    margin-top: 15px;
+}
+
+.quiz-question-item {
+    margin-top: 15px;
+}
+
+.quiz__down-resp {
+    margin-top: 20px;
+}
+
+.end-response {
+    display: block;
+    margin-top: 20px;
+}
