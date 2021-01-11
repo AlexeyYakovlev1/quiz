@@ -4,54 +4,56 @@ const quizEndBtn = document.querySelector('.quiz-end-btn');
 const questions = [
     {
         question: 'Какой орган на протижении жизни не меняется в размерах?', 
-        answer: '1',
-        responses: [
-            'Глаза',
-            'Нос',
-            'Уши'
+        done: 'a',
+        answers: [
+            {text: 'Глаз'},
+            {text: 'Нос'},
+            {text: 'Уши'}
         ]
     },
     {
-        question: 'В чем измеряется сила тока?', 
-        answer: '2',
-        responses: [
-            'Вольты',
-            'Амперы',
-            'Джоули'
+        question: 'В чем измеряется сила тока?',
+        done: 'b',
+        answers: [
+            {text: 'Вольты'},
+            {text: 'Амперы'},
+            {text: 'Джоули'}
         ]
     },
     {
-        question: 'В какой стране находится самое большое болото?', 
-        answer: '1',
-        responses: [
-            'Россия',
-            'Швейцария',
-            'Япония'
+        question: 'В какой стране находится самое большое болото?',
+        done: 'a',
+        answers: [
+            {text: 'Россия'},
+            {text: 'Швейцария'},
+            {text: 'Япония'}
         ]
     },
     {
-        question: 'Кто создал первый язык программирования?', 
-        answer: '2',
-        responses: [
-            'Мужчина',
-            'Женщина'
+        question: 'Кто создал первый язык программирования?',
+        done: 'b',
+        answers: [
+            {text: 'Мужчина'},
+            {text: 'Женщина'}
         ]
     }
 ];
 
 const alphabet = [
-    'a','b','c','d','f','g','h',
-    'j','k','l','m','n','o','p',
-    'q','r','s','t','u','v','w',
-    'x','y'
-];
+    'a','b','c','d','e',
+    'f','g','h','i','j',
+    'k','l','m','n','o',
+    'p','q','r','s','t',
+    'u','v','w','x','y',
+    'z'
+]
 
 function renderQuestions(questions) {
     questions.map((question, index) => {
         const questionHtml = `
             <li class="quiz-question-item">
                 <div class="quiz-quiestion-title">Вопрос ${index+1}: ${question.question}</div>
-                <ul class="quiz-response-list" data-response="${question.responses.map(item => item)}"></ul>
+                <ul class="quiz-response-list" data-question="${question.question}"></ul>
                 <div class="quiz__down-resp">
                     <label class="quiz-question-response" for="response">Ответ:</label>
                     <input type="text" id="response">
@@ -66,41 +68,39 @@ function renderQuestions(questions) {
 renderQuestions(questions);
 
 function renderResponses(questions) {
-    const quizResponseList = document.querySelectorAll('.quiz-response-list');
+    const quizResponseListAll = document.querySelectorAll('.quiz-response-list');
 
-    quizResponseList.forEach(list => {
-        questions.map(question => {
-            if (list.dataset.response === question.responses.join()) {
-                question.responses.map(item => {
-                    const respHtml = `
-                        <li>${item}</li>
-                    `;
-        
-                    list.innerHTML += respHtml;
-                });
-            }
-        });
-    });
+    questions.map(question => {
+        quizResponseListAll.forEach(list => {
+            question.answers.map(item => {
+                if (question.question === list.dataset.question) {
+                    const responseHtml = `
+                        <li>${item.text}</li>
+                    `
+
+                    list.innerHTML += responseHtml;
+                }
+            })
+        })
+    })
 }
 
 renderResponses(questions);
 
 quizEndBtn.addEventListener('click', () => {
-    const endResponse = document.querySelector('.end-response');
-    const response = document.querySelectorAll('#response');
     const name = document.querySelector('#name');
+    const response = document.querySelectorAll('#response');
+    const endResponse = document.querySelector('.end-response');
 
     if (name.value) {
         questions.map(question => {
-            response.forEach(resp => {
-                if (alphabet.indexOf(resp.value.toLowerCase())+1 === +question.answer) {
-                    endResponse.textContent = `${name.value} успешно прошел(а) тест!`;
-                } else {
-                    endResponse.textContent = `${name.value} ужасно прошел(а) тест!`;
-                }
-            });
-        });
+            const doneArray = [...response].filter(resp => {
+                return resp.value.toString().toLowerCase() === question.done.toString().toLowerCase();
+            })
+
+            return endResponse.textContent = `${name.value} ответил на ${doneArray.length} вопроса из ${questions.length}`;
+        })
     } else {
-        endResponse.textContent = 'Вы не подписали имя!';
+        endResponse.textContent = 'Заполните имя!';
     }
-});
+})
