@@ -1,6 +1,34 @@
+*, *::after, *::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    list-style: none;
+    outline: none;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.quiz {
+    position: absolute;
+    padding: 10px;
+    top: 48%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 850px;
+    overflow-y: auto;
+}
+
+.quiz-title,
+.quiz-name {
+    padding-bottom: 10px;
+}
+
 .quiz-response-list li {
-    list-style-type:upper-alpha;
-    margin-top: 15px;
+    list-style-type: upper-alpha;
+    margin: 15px 0 0 25px;
 }
 
 .quiz-question-item {
@@ -9,6 +37,11 @@
 
 .quiz__down-resp {
     margin-top: 20px;
+}
+
+.quiz-end-btn {
+    cursor: pointer;
+    margin-top: 10px;
 }
 
 .end-response {
