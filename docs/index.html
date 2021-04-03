@@ -10,22 +10,24 @@
     
 
     <section class="quiz">
-        <h1 class="quiz-title">Тест</h1>
+        <div class="wrapper">
+            <h1 class="quiz-title">Тест</h1>
 
-        <div class="quiz-name">
-            <label for="name">Ваше имя:</label>
-            <input type="text" id="name" name="name" />
+            <div class="quiz-name">
+                <label for="name">Ваше имя:</label>
+                <input type="text" id="name" name="name" />
+            </div>
+
+            <p class="quiz-description">
+                Ответьте на несколько вопросов: (ответ английской буквой)
+            </p>
+
+            <ul class="quiz-question-list"></ul>
+
+            <button class="quiz-end-btn">Закончить</button>
+        
+            <span class="end-response">Результат: нажмите кнопку "Закончить"</span>
         </div>
-
-        <p class="quiz-description">
-            Ответьте на несколько вопросов:
-        </p>
-
-        <ul class="quiz-question-list"></ul>
-
-        <button class="quiz-end-btn">Закончить</button>
-    
-        <span class="end-response">Результат: нажмите кнопку "Закончить"</span>
     </section>
 
     <script src="./script.js"></script>
