@@ -15,7 +15,6 @@ body {
 
 .quiz {
     padding: 10px;
-    max-height: 850px;
     overflow-y: auto;
     display: flex;
     justify-content: center;
