@@ -1,4 +1,6 @@
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -12,13 +14,11 @@ body {
 }
 
 .quiz {
-    position: absolute;
     padding: 10px;
-    top: 48%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     max-height: 850px;
     overflow-y: auto;
+    display: flex;
+    justify-content: center;
 }
 
 .quiz-title,
